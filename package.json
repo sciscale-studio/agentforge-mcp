@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "MCP server for AgentForge — turn rough requests into tool-tuned, quality-checked prompts for AI coding agents.",
   "license": "MIT",
+  "author": "sciscale studio",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
