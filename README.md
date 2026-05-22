@@ -10,10 +10,7 @@ sentence; get back a structured, tool-tuned prompt it can execute in one pass.
 [AgentForge](https://agentforge.sciscale.org). One tool, one job: turn a vague
 request into a sharp one.
 
-<!-- DEMO GIF: record agentforge-mcp running inside Claude Code (~10-20s, the
-     rough-request-in / polished-prompt-out moment), save it at assets/demo.gif,
-     then uncomment the line below. -->
-<!-- ![AgentForge MCP in action](assets/demo.gif) -->
+![AgentForge MCP in action](assets/demo.gif)
 
 ## Why
 
