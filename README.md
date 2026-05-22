@@ -1,36 +1,55 @@
 # agentforge-mcp
 
-**Stop re-explaining what you want.** An MCP server that turns a rough,
-one-line coding request into a structured, tool-tuned prompt — so your AI
-coding agent gets it right the first time.
+[![npm](https://img.shields.io/npm/v/agentforge-mcp)](https://www.npmjs.com/package/agentforge-mcp)
+[![license](https://img.shields.io/npm/l/agentforge-mcp)](./LICENSE)
 
-It's a thin client for [AgentForge](https://agentforge.sciscale.org): it
-forwards your request to the hosted engine, which extracts the real
-requirements, catches the edge cases you didn't mention, formats the prompt
-for your specific agent, and quality-checks it before handing it back.
+**Stop re-explaining what you want to your AI coding agent.** Hand it one rough
+sentence; get back a structured, tool-tuned prompt it can execute in one pass.
 
-No engine logic runs locally — this package is a ~150-line forwarder. The work
-happens server-side, so it stays current without you updating anything.
+`agentforge-mcp` is a Model Context Protocol server for
+[AgentForge](https://agentforge.sciscale.org). One tool, one job: turn a vague
+request into a sharp one.
 
-## Setup
+<!-- DEMO GIF: record agentforge-mcp running inside Claude Code (~10-20s, the
+     rough-request-in / polished-prompt-out moment), save it at assets/demo.gif,
+     then uncomment the line below. -->
+<!-- ![AgentForge MCP in action](assets/demo.gif) -->
 
-### 1. Get an API key
+## Why
 
-Sign in at [agentforge.sciscale.org](https://agentforge.sciscale.org), open
-**API keys**, and create one. Free accounts get 3 refinements/day; Pro is
-unlimited. The key is shown once — copy it.
+You know the loop: you ask your coding agent for something, it misreads the half
+you didn't spell out, you correct it, it breaks something else, you re-explain.
+The fix isn't a smarter agent — it's a sharper *prompt*.
 
-### 2. Add the server to your coding agent
+AgentForge does the prompt engineering for you. Give it
+`"add a dark mode toggle that persists"` and it:
 
-The server runs via `npx` — nothing to install or build.
+- **extracts the real requirements** — the edge cases, the acceptance criteria,
+  the things you'd have forgotten to mention;
+- **formats for your specific agent** — Claude Code wants file:line references,
+  Cursor wants directives, Aider wants tight context;
+- **quality-checks before returning** — every prompt is scored across 12
+  dimensions, calibrated against 768 real software requests.
 
-**Claude Code:**
+You get a prompt your agent runs once, instead of five times.
+
+## Quick start
+
+No install — it runs through `npx`.
+
+**1. Get an API key.** Sign in at
+[agentforge.sciscale.org](https://agentforge.sciscale.org), open **API keys**,
+and create one. The key is shown once — copy it.
+
+**2. Add it to your agent.**
+
+Claude Code:
 
 ```sh
-claude mcp add agentforge --env AGENTFORGE_API_KEY=af_your_key_here -- npx -y agentforge-mcp
+claude mcp add agentforge --env AGENTFORGE_API_KEY=af_your_key -- npx -y agentforge-mcp
 ```
 
-**Cursor / Windsurf / Claude Desktop** — add to your MCP config
+Cursor / Windsurf / Claude Desktop — add to your MCP config
 (`~/.cursor/mcp.json`, `~/.codeium/windsurf/mcp_config.json`, etc.):
 
 ```json
@@ -39,33 +58,47 @@ claude mcp add agentforge --env AGENTFORGE_API_KEY=af_your_key_here -- npx -y ag
     "agentforge": {
       "command": "npx",
       "args": ["-y", "agentforge-mcp"],
-      "env": { "AGENTFORGE_API_KEY": "af_your_key_here" }
+      "env": { "AGENTFORGE_API_KEY": "af_your_key" }
     }
   }
 }
 ```
 
-## The tool
+**3. Use it.** Ask your agent naturally — *"refine this with AgentForge, then
+build it: add a dark mode toggle that persists."*
 
-### `agentforge_refine_prompt`
+## The tool — `agentforge_refine_prompt`
 
-Turns a plain-language request into a refined prompt.
+| Argument | Default | |
+|---|---|---|
+| `request` | — | Your task in plain language (1–4000 chars). Rough is fine. |
+| `target_tool` | `claude-code` | `claude-code`, `codex`, `cursor`, `aider`, `continue`, `windsurf`, `kimi`, `generic` |
+| `style` | `plan-first` | `plan-first`, `direct-edit`, `explore-first` |
 
-| Argument | Type | Default | Notes |
-|---|---|---|---|
-| `request` | string | — | The coding task, in plain language (1–4000 chars). Rough is fine. |
-| `target_tool` | string | `claude-code` | `claude-code`, `codex`, `cursor`, `aider`, `continue`, `windsurf`, `kimi`, `generic` |
-| `style` | string | `plan-first` | `plan-first`, `direct-edit`, `explore-first` |
+Returns the refined prompt, plus its Quality Engine score and your remaining
+daily usage.
 
-Returns the refined prompt as text. The structured result also includes the
-account `tier`, the Quality Engine `quality` score, and today's `usage`.
+## Free vs Pro
 
-Once configured, just ask your agent — e.g. *"refine this with AgentForge: add
-a dark mode toggle that persists, then implement it."*
+| | Free | Pro |
+|---|---|---|
+| Refinements | 3 / day | Unlimited |
+| Quality Engine | scored across 12 dimensions | scored **+ auto-refined until it passes ≥ 90** |
+
+The full product — generation history, advanced modes, the web workbench —
+lives at **[agentforge.sciscale.org](https://agentforge.sciscale.org)**. This
+MCP server is the local client; Pro applies to both.
+
+## How it works
+
+`agentforge-mcp` is a thin client — no engine logic ships in this package. Your
+request goes to the AgentForge API, the hosted engine does the extraction,
+formatting, and quality-checking, and the prompt comes back. The engine keeps
+improving without you ever updating this package.
 
 ## Configuration
 
-| Variable | Default | Purpose |
+| Variable | Default | |
 |---|---|---|
 | `AGENTFORGE_API_KEY` | — | **Required.** Your API key. |
 | `AGENTFORGE_API_URL` | `https://agentforge.sciscale.org/api/v1/refine` | Override the endpoint (rarely needed). |
@@ -80,4 +113,5 @@ node dist/index.js # runs on stdio
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). A project of [sciscale studio](https://wow.sciscale.org).
+MIT — see [LICENSE](./LICENSE). Built by
+[sciscale studio](https://wow.sciscale.org).
