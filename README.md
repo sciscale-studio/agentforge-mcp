@@ -1,16 +1,25 @@
+<div align="center">
+
+<img src="assets/agentforge-mark.svg" alt="AgentForge" width="76" />
+
 # agentforge-mcp
+
+**Stop re-explaining what you want to your AI coding agent.**<br/>
+Hand it one rough sentence — get back a structured, tool-tuned prompt
+it can execute in one pass.
 
 [![npm](https://img.shields.io/npm/v/agentforge-mcp)](https://www.npmjs.com/package/agentforge-mcp)
 [![license](https://img.shields.io/npm/l/agentforge-mcp)](./LICENSE)
 
-**Stop re-explaining what you want to your AI coding agent.** Hand it one rough
-sentence; get back a structured, tool-tuned prompt it can execute in one pass.
+[**agentforge.sciscale.org**](https://agentforge.sciscale.org) · [Quick start](#quick-start) · [npm](https://www.npmjs.com/package/agentforge-mcp)
 
-`agentforge-mcp` is a Model Context Protocol server for
-[AgentForge](https://agentforge.sciscale.org). One tool, one job: turn a vague
-request into a sharp one.
+</div>
 
 ![AgentForge MCP in action](assets/demo.gif)
+
+`agentforge-mcp` is the [Model Context Protocol](https://modelcontextprotocol.io)
+server for [AgentForge](https://agentforge.sciscale.org). One tool, one job: turn
+a vague request into a sharp one.
 
 ## Why
 
@@ -82,17 +91,25 @@ daily usage.
 | Refinements | 3 / day | Unlimited |
 | Quality Engine | scored across 12 dimensions | scored **+ auto-refined until it passes ≥ 90** |
 
-The full product — generation history, advanced modes, the web workbench —
-lives at **[agentforge.sciscale.org](https://agentforge.sciscale.org)**. This
-MCP server is the local client; Pro applies to both.
+## Or use the web app
 
-## Prefer a web UI?
+Don't want to wire up an MCP server at all? The same engine — same Quality
+Engine, same per-account Pro — runs right in your browser at
+**[agentforge.sciscale.org](https://agentforge.sciscale.org)**. No install, no
+key, no config.
 
-Don't want to wire up an MCP server? The same engine runs in the browser at
-**[agentforge.sciscale.org](https://agentforge.sciscale.org)** — paste a
-request, pick your target tool, copy the prompt. No install, no key.
+[![The AgentForge web app](assets/web-landing.png)](https://agentforge.sciscale.org)
 
-![The AgentForge web app](assets/demo-web.gif)
+<div align="center">
+
+### [→ Try it now at agentforge.sciscale.org](https://agentforge.sciscale.org)
+
+</div>
+
+Paste a request, pick your target tool, copy the prompt — generation history and
+advanced modes included:
+
+![The web app in action](assets/demo-web.gif)
 
 ## How it works
 
@@ -118,5 +135,19 @@ node dist/index.js # runs on stdio
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). Built by
-[sciscale studio](https://wow.sciscale.org).
+MIT — see [LICENSE](./LICENSE).
+
+<br/>
+
+<div align="center">
+
+<a href="https://wow.sciscale.org">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/sciscale-white.png" />
+    <img src="assets/sciscale-ink.png" alt="SciScale studio" height="30" />
+  </picture>
+</a>
+
+<sub>**agentforge-mcp** is part of [AgentForge](https://agentforge.sciscale.org) — a [SciScale studio](https://wow.sciscale.org) product.</sub>
+
+</div>
