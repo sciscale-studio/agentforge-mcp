@@ -86,6 +86,14 @@ The full product — generation history, advanced modes, the web workbench —
 lives at **[agentforge.sciscale.org](https://agentforge.sciscale.org)**. This
 MCP server is the local client; Pro applies to both.
 
+## Prefer a web UI?
+
+Don't want to wire up an MCP server? The same engine runs in the browser at
+**[agentforge.sciscale.org](https://agentforge.sciscale.org)** — paste a
+request, pick your target tool, copy the prompt. No install, no key.
+
+![The AgentForge web app](assets/demo-web.gif)
+
 ## How it works
 
 `agentforge-mcp` is a thin client — no engine logic ships in this package. Your
