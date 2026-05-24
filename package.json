@@ -1,6 +1,7 @@
 {
   "name": "agentforge-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
+  "mcpName": "org.sciscale/agentforge-mcp",
   "description": "MCP server for AgentForge — turn rough requests into tool-tuned, quality-checked prompts for AI coding agents.",
   "license": "MIT",
   "author": "sciscale studio",
