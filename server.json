@@ -2,19 +2,19 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "org.sciscale/agentforge-mcp",
   "title": "AgentForge",
-  "description": "Turn rough requests into rigorously structured prompts — for any coding agent.",
+  "description": "Turn rough requests into rigorously structured prompts, for any coding agent.",
   "websiteUrl": "https://agentforge.sciscale.org",
   "repository": {
     "url": "https://github.com/sciscale-studio/agentforge-mcp",
     "source": "github"
   },
-  "version": "0.1.3",
+  "version": "0.1.4",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "agentforge-mcp",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
