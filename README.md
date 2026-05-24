@@ -35,9 +35,11 @@ AgentForge does the prompt engineering for you. Give it
 - **formats for your specific agent** — Claude Code wants file:line references,
   Cursor wants directives, Aider wants tight context;
 - **quality-checks before returning** — every prompt is scored across 12
-  dimensions, calibrated against 768 real software requests.
+  dimensions before it leaves the engine.
 
-You get a prompt your agent runs once, instead of five times.
+Harness engineering is having a moment — but prompt engineering matters *more*
+in the coding-agent era, not less. Tested across **1,000+ real coding cases**,
+projects with AgentForge in the loop reached a deployable state **147% faster**.
 
 ## Quick start
 
